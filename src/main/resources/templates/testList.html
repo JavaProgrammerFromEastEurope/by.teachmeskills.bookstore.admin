@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"></head>
+<body>
+<div th:replace="common/header :: navbar"></div>
+
+<div class="container">
+    <div class="table-responsive">
+        <table id="bookListTable" class="table table-bordered table-hover table-striped">
+            <thead>
+            <tr>
+                <th><input th:id="selectAllQuestions" type="checkbox"/></th>
+                <th>Question</th>
+                <th>Type of question</th>
+                <th>Options</th>
+                <th>Comparison</th>
+                <th>Answer</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-th-each="test : ${testList}">
+                <td>
+                    <input hidden="hidden" name="id" th:value="${test.id}"/>
+                    <input th:id="'selected'+${test.id}" class="checkboxTest" type="checkbox"/>
+                </td>
+                <td><a th:href="@{/test/testInfo(id=${test.id})}"><span th:text="${test.question}"></span></a></td>
+                <td th:utext="${test.delimiter}"></td>
+                <td th:utext="${test.firstOption}"></td>
+                <td th:utext="${test.firstComparison}"></td>
+                <td th:utext="${test.firstAnswer}"></td>
+                <td th:utext="${test.score}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <button th:id="deleteSelected" class="btn btn-danger">Delete Selected</button>
+</div>
+<div th:replace="common/header :: body-bottom-scripts"></div>
+</body>
+</html>

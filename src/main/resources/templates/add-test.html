@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header"><title></title></head>
+<body>
+<div th:replace="common/header :: navbar"></div>
+
+<link rel="stylesheet" href="/static/css/disable.css" crossorigin="anonymous"/>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script th:src="@{/static/js/required_fields.js}"></script>
+<div class="container">
+    <div class="row">
+        <form class="form-horizontal rf" th:action="@{/test/add}" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <legend class="center-block">Test Information
+                    <!--                    <span style="font-size: small">* is a requirement </span>-->
+                </legend>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="question">* Question</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="question" th:value="${test.question}"
+                               required="required" placeholder="Question" name="question"/>
+                        <span class="help-block">Question</span>
+                    </div>
+                </div>
+                <!--delimiter-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="question">* Delimiter</label>
+                    <div class="col-md-8">
+                        <label for="delimiter">Delimiter</label>
+                        <select class="form-control delimiter" th:value="${test.delimiter}" id="delimiter"
+                                name="delimiter">
+                            <option value="" selected="selected" disabled="disabled">Please select an option...
+                            </option>
+                            <option value="CheckPanel_3" th:selected="(${test.delimiter}=='CheckPanel_3')">
+                                CheckPanel_3
+                            </option>
+                            <option value="CheckPanel_4" th:selected="(${test.delimiter}=='CheckPanel_4')">
+                                CheckPanel_4
+                            </option>
+                            <option value="CheckPanel_5" th:selected="(${test.delimiter}=='CheckPanel_5')">
+                                CheckPanel_5
+                            </option>
+                            <option value="CheckBoxPanel_3" th:selected="(${test.delimiter}=='CheckBoxPanel_3')">
+                                CheckBoxPanel_3
+                            </option>
+                            <option value="CheckBoxPanel_4" th:selected="(${test.delimiter}=='CheckBoxPanel_4')">
+                                CheckBoxPanel_4
+                            </option>
+                            <option value="CheckBoxPanel_5" th:selected="(${test.delimiter}=='CheckBoxPanel_5')">
+                                CheckBoxPanel_5
+                            </option>
+                            <option value="ComparisonPanel_3"
+                                    th:selected="(${test.delimiter}=='ComparisonPanel_3')">
+                                ComparisonPanel_3
+                            </option>
+                            <option value="ComparisonPanel_4"
+                                    th:selected="(${test.delimiter}=='ComparisonPanel_4')">
+                                ComparisonPanel_4
+                            </option>
+                            <option value="ComparisonPanel_5"
+                                    th:selected="(${test.delimiter}=='ComparisonPanel_5')">
+                                ComparisonPanel_5
+                            </option>
+                            <option value="Input" th:selected="(${test.delimiter}=='Input')">
+                                Input
+                            </option>
+                        </select>
+                        <span class="help-block">Delimiter</span>
+                    </div>
+                </div>
+                <legend class="center-block">Options of the question
+                    <!--                    <span style="font-size: small">* is a requirement </span>-->
+                </legend>
+                <!--options-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="firstOption">* Option 1</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control option" id="firstOption" th:value="${test.firstOption}"
+                               placeholder="Option 1" name="firstOption"/>
+                        <span class="help-block">Option 1</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="secondOption">* Option 2</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control option" id="secondOption" th:value="${test.secondOption}"
+                               placeholder="Option 2" name="secondOption"/>
+                        <span class="help-block">Option 2</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="thirdOption">* Option 3</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control option" id="thirdOption" th:value="${test.thirdOption}"
+                               placeholder="Option 3" name="thirdOption"/>
+                        <span class="help-block">Option 3 </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="firthOption">* Option 4</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control four_option" id="firthOption"
+                               th:value="${test.firthOption}"
+                               placeholder="Option 4" name="firthOption"/>
+                        <span class="help-block">Option 4</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="fifthOption">* Option 5</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control five_option" id="fifthOption"
+                               th:value="${test.fifthOption}"
+                               placeholder="Option 5" name="fifthOption"/>
+                        <span class="help-block">Option 5</span>
+                    </div>
+                </div>
+                <legend class="center-block">Comparisons of the question
+                    <!--                    <span style="font-size: small">* is a requirement </span>-->
+                </legend>
+                <!--comparisons-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="firstComparison">* Comparison 1</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control comparison" id="firstComparison"
+                               th:value="${test.firstComparison}"
+                               placeholder="Comparison" name="firstComparison"/>
+                        <span class="help-block">Comparison 1</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="secondComparison">* Comparison 2</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control comparison" id="secondComparison"
+                               th:value="${test.secondComparison}"
+                               placeholder="Comparison" name="secondComparison"/>
+                        <span class="help-block">Comparison 2</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="thirdComparison">* Comparison 3</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control comparison" id="thirdComparison"
+                               th:value="${test.thirdComparison}"
+                               placeholder="Comparison" name="thirdComparison"/>
+                        <span class="help-block">Comparison 3</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="firthComparison">* Comparison 4</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control four_comparison" id="firthComparison"
+                               th:value="${test.firthComparison}"
+                               placeholder="Comparison" name="firthComparison"/>
+                        <span class="help-block">Comparison 4</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="fifthComparison">* Comparison 5</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control five_comparison" id="fifthComparison"
+                               th:value="${test.fifthComparison}"
+                               placeholder="Comparison" name="fifthComparison"/>
+                        <span class="help-block">Comparison 5</span>
+                    </div>
+                </div>
+                <!--answer-->
+                <legend class="center-block">Answers of the question
+                    <!--                    <span style="font-size: small">* is a requirement </span>-->
+                </legend>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="firstAnswer">* Answer 1</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control first_answer" id="firstAnswer"
+                               th:value="${test.firstAnswer}"
+                               placeholder="Answer 1" name="firstAnswer"/>
+                        <span class="help-block">Answer 1</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="secondAnswer">* Answer 2</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control second_answer" id="secondAnswer"
+                               th:value="${test.secondAnswer}"
+                               placeholder="Answer 2" name="secondAnswer"/>
+                        <span class="help-block">Answer 2</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="thirdAnswer">* Answer 3</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control third_answer" id="thirdAnswer"
+                               th:value="${test.thirdAnswer}"
+                               placeholder="Answer 3" name="thirdAnswer"/>
+                        <span class="help-block">Answer 3</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="fourAnswer">* Answer 4</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control four_answer" id="fourAnswer"
+                               th:value="${test.fourAnswer}"
+                               placeholder="Answer 4" name="fourAnswer"/>
+                        <span class="help-block">Answer 4</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="fiveAnswer">* Answer 5</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control five_answer" id="fiveAnswer"
+                               th:value="${test.fiveAnswer}"
+                               placeholder="Answer 5" name="fiveAnswer"/>
+                        <span class="help-block">Answer 5</span>
+                    </div>
+                </div>
+                <!--score-->
+                <legend class="center-block">Score of the question
+                    <!--                    <span style="font-size: small">* is a requirement </span>-->
+                </legend>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="score">* Score</label>
+                    <div class="col-md-8">
+                        <input type="number" class="form-control" id="score" th:value="${test.score}"
+                               placeholder="Score" required="required" name="score"/>
+                        <span class="help-block">score</span>
+                    </div>
+                </div>
+                <!--                &lt;!&ndash;upload image&ndash;&gt;-->
+                <!--                <div class="form-group">-->
+                <!--                    <div class="col-md-2">-->
+                <!--                        <label  for="bookImage">Upload book image</label>-->
+                <!--                    </div>-->
+                <!--                    <div class="col-md-8">-->
+                <!--                        <input id="bookImage" type="file" name="bookImage" th:value="${test.testImage}"/>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <div class="form-group">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <button type="submit" class="btn btn-success">Add question</button>
+                        <a class="btn btn-danger" th:href="@{/}">Cancel</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div th:replace="common/header :: body-bottom-scripts"></div>
+</body>
+</html>
